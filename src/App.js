@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';  // Import necessary components from react-router-dom
+import Register from './Components/RegForm';  // Import Register component
+import Login from './Components/LogForm';  // Import Login component
+import UserDash from './Components/UserDash';  // Import User Dashboard component
+import SecureRoute from './Components/SecureRoute';  // Import SecureRoute component to protect the dashboard
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='page'>
+      <BrowserRouter>  {/* The BrowserRouter component wraps the entire routing logic to enable routing in the app */}
+        <Routes>
+          {/* Default route, redirects users to the login page */}
+          <Route path="/" element={<Navigate to="/login" />} />  
+          
+          {/* Route for the registration page */}
+          <Route path="/register" element={<Register />} />
+          
+          {/* Route for the login page */}
+          <Route path="/login" element={<Login />} />
+          
+          {/* Protected route for the dashboard. Wrapped with SecureRoute to check for authentication */}
+          <Route path="/dashboard" element={<SecureRoute><UserDash /></SecureRoute>} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
-
-export default App;
