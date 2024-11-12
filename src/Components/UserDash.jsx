@@ -11,7 +11,7 @@ function UserDash() {
     // Fetch user data from backend API on component mount
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`${process.env.FORM_API_URL}/users`);
+        const response = await axios.get("https://login-system-apis.vercel.app/users");
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -19,22 +19,6 @@ function UserDash() {
     };
     fetchUserData();
   }, []);
-
-  // Function to handle user deletion
-  const handleDelete = async (userId) => {
-    try {
-      await axios.delete(`http://localhost:3032/users/${userId}`); // Make DELETE request to backend
-      setUsers(users.filter(user => user._id !== userId)); // Update state to remove deleted user
-      alert('User deleted successfully');
-    } catch (error) {
-      console.error('Error deleting user:', error);
-    }
-  };
-
-  // Function to navigate to the edit page for a user
-  const handleEdit = (userId) => {
-    navigate(`/edit-user/${userId}`);  // Redirect to edit page
-  };
 
   return (
     <div className='userDash'>
@@ -46,7 +30,6 @@ function UserDash() {
             <th>Date of Birth</th>
             <th>Email</th>
             <th>Password</th>
-            <th>Actions</th>  {/* New column for actions (edit and delete) */}
           </tr>
         </thead>
         <tbody>
@@ -56,14 +39,6 @@ function UserDash() {
               <td>{new Date(user.dateOfBirth).toLocaleDateString()}</td>
               <td>{user.email}</td>
               <td>{user.normalPassword}</td>
-              <td className='actions d-flex'>
-                <button className='btn btn-info' onClick={() => handleEdit(user._id)}>
-                  <RiEdit2Line />
-                </button>
-                <button className='btn btn-danger' onClick={() => handleDelete(user._id)}>
-                  <RiDeleteBinLine />
-                </button>
-              </td>
             </tr>
           ))}
         </tbody>

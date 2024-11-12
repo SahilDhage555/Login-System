@@ -10,7 +10,7 @@ export default function App() {
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>  {/* The BrowserRouter component wraps the entire routing logic to enable routing in the app */}
         <Routes>
           {/* Default route, redirects users to the login page */}
-          <Route path="/" element={<Navigate to="/login" />} />  
+          <Route path="/" element={<Navigate to="/register" />} />  
           
           {/* Route for the registration page */}
           <Route path="/register" element={<Register />} />
