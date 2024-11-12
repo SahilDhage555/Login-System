@@ -7,7 +7,7 @@ import SecureRoute from './Components/SecureRoute';  // Import SecureRoute compo
 export default function App() {
   return (
     <div className='page'>
-      <BrowserRouter>  {/* The BrowserRouter component wraps the entire routing logic to enable routing in the app */}
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>  {/* The BrowserRouter component wraps the entire routing logic to enable routing in the app */}
         <Routes>
           {/* Default route, redirects users to the login page */}
           <Route path="/" element={<Navigate to="/login" />} />  
