@@ -29,7 +29,7 @@ function RegForm() {
     try {
       // Send registration data to the backend API using axios
       const response = await axios.post(
-        "https://login-system-apis.vercel.app/new-user",
+        `${process.env.FORM_API_URL}/new-user`,
         regData
       );
 
