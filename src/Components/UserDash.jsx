@@ -1,26 +1,40 @@
-import React, { useEffect, useState } from 'react';  // Import necessary React hooks
-import axios from 'axios';  // Import axios for making HTTP requests
-import { Link } from 'react-router-dom';  // Import Link for navigation
-import { RiArrowGoBackFill } from "react-icons/ri";  // Import icon for the back button
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { RiArrowGoBackFill, RiEdit2Line, RiDeleteBinLine } from "react-icons/ri";  // Import icons
 
 function UserDash() {
   const [users, setUsers] = useState([]);  // State to store fetched user data
-  console.log(users);  // For debugging purposes, logs the user data to the console
+  const navigate = useNavigate(); // useNavigate for redirection after edit or delete
 
   useEffect(() => {
-    // This hook runs once when the component mounts, and it fetches user data
+    // Fetch user data from backend API on component mount
     const fetchUserData = async () => {
       try {
-        // Making an API call to fetch the user data from the backend
-        const response = await axios.get('http://localhost:3032/users');
-        setUsers(response.data);  // Storing the response data in the state
+        const response = await axios.get('https://login-system-apis.vercel.app/users');
+        setUsers(response.data);
       } catch (error) {
-        console.error('Error fetching user data:', error);  // Logging any errors encountered during the API call
+        console.error('Error fetching user data:', error);
       }
     };
+    fetchUserData();
+  }, []);
 
-    fetchUserData();  // Call the function to fetch user data when the component mounts
-  }, []);  // Empty dependency array ensures this effect runs only once on mount
+  // Function to handle user deletion
+  const handleDelete = async (userId) => {
+    try {
+      await axios.delete(`http://localhost:3032/users/${userId}`); // Make DELETE request to backend
+      setUsers(users.filter(user => user._id !== userId)); // Update state to remove deleted user
+      alert('User deleted successfully');
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
+  };
+
+  // Function to navigate to the edit page for a user
+  const handleEdit = (userId) => {
+    navigate(`/edit-user/${userId}`);  // Redirect to edit page
+  };
 
   return (
     <div className='userDash'>
@@ -30,24 +44,31 @@ function UserDash() {
           <tr>
             <th>Name</th>
             <th>Date of Birth</th>
-            <th>E-mail</th>
-            <th>Password</th>  {/* Display the normalPassword for each user */}
+            <th>Email</th>
+            <th>Password</th>
+            <th>Actions</th>  {/* New column for actions (edit and delete) */}
           </tr>
         </thead>
         <tbody>
           {users.map((user) => (
-            // Mapping through the users array and rendering each user's details
             <tr key={user._id}>
-              <td>{user.name}</td>  {/* Display user name */}
-              <td>{new Date(user.dateOfBirth).toLocaleDateString()}</td>  {/* Format and display date of birth */}
-              <td>{user.email}</td>  {/* Display user email */}
-              <td>{user.normalPassword}</td>  {/* Display user's normal password */}
+              <td>{user.name}</td>
+              <td>{new Date(user.dateOfBirth).toLocaleDateString()}</td>
+              <td>{user.email}</td>
+              <td>{user.normalPassword}</td>
+              <td className='actions d-flex'>
+                <button className='btn btn-info' onClick={() => handleEdit(user._id)}>
+                  <RiEdit2Line />
+                </button>
+                <button className='btn btn-danger' onClick={() => handleDelete(user._id)}>
+                  <RiDeleteBinLine />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {/* Link to navigate back to the login page */}
-      <Link className='btn btn-dark' to={'/login'}><RiArrowGoBackFill /></Link>
+      <Link className='btn btn-dark' to={'/login'}><RiArrowGoBackFill /> Back</Link>
     </div>
   );
 }

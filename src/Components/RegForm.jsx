@@ -29,7 +29,7 @@ function RegForm() {
     try {
       // Send registration data to the backend API using axios
       const response = await axios.post(
-        "http://localhost:3032/new-user",
+        "https://login-system-apis.vercel.app/new-user",
         regData
       );
 
@@ -56,7 +56,7 @@ function RegForm() {
       >
         {/* Header for the registration form */}
         <div className="formHead">
-          <p>Register</p>
+          <p>New User</p>
         </div>
 
         {/* User icon to represent the registration form */}
