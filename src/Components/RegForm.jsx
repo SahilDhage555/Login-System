@@ -60,7 +60,7 @@ function RegForm() {
         </div>
 
         {/* User icon to represent the registration form */}
-        <div>
+        <div className="">
           <PiUserCircleFill className="icon" />
         </div>
 

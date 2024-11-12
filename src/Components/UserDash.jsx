@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { RiArrowGoBackFill, RiEdit2Line, RiDeleteBinLine } from "react-icons/ri";  // Import icons
+import { RiArrowGoBackFill } from "react-icons/ri";  // Import icons
 
 function UserDash() {
   const [users, setUsers] = useState([]);  // State to store fetched user data

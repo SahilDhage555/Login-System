@@ -28,7 +28,8 @@ input {
     background-color: transparent;
     outline: none;
     border: none;
-    width: 88%;
+    width: 90%;
+    height: 30px;
     padding-left: 5px;
 }
 
@@ -54,25 +55,26 @@ input::placeholder {
 
 .icon {
     margin-top: -40px;
-    font-size: 80px;
+    font-size: 90px;
     color: gray;
 }
-
+  
 .inputFeild {
     background-color: rgb(173, 169, 169);
     padding: 5px;
     border-radius: 5px;
+    width: 70%;
 }
 
 .date {
-    width: 217px;
+    width: 70%;
     border-radius: 5px;
     background-color: rgb(173, 169, 169);
     padding: 5px;
 }
 
 .RegBtn {
-    width: 30%;
+    width: 40%;
     background-color: rgb(47, 196, 191);
     border: none;
     margin-top: 20px;
