@@ -64,6 +64,7 @@ input::placeholder {
     padding: 5px;
     border-radius: 5px;
     width: 70%;
+    margin: auto;
 }
 
 .date {
@@ -100,7 +101,7 @@ input::placeholder {
 }
 
 .login-form input{
-    width: 93%;
+    width: 90%;
 }
 
 .LogIcon {
