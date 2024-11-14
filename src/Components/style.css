@@ -139,7 +139,7 @@ input::placeholder {
 .userDash {
     width: 55%;
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: auto;
@@ -177,31 +177,3 @@ td {
     gap: 5px;
 }
 
-/* @media (min-width: 468px) {
-    .RegForm, .login-form {
-        width: 70%;
-    }
-
-    .userDash {
-        width: 80%;
-    }
-    
-    .icon {
-        font-size: 70px;
-    }
-} */
-
-/* Large Screens (Desktops) */
-/* @media (min-width: 1024px) {
-    .RegForm, .login-form {
-        width: 35%;
-    }
-
-    .userDash {
-        width: 55%;
-    }
-
-    .icon {
-        font-size: 90px;
-    }
-} */
